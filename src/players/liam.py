@@ -7,14 +7,13 @@ class LiamBot:
         my_cards = game_state.player_cards[self.name]
         my_tokens = game_state.player_tokens[self.name]
         other_cards = self.get_other_cards(game_state)
-        if card <= 5:
+        if card <= 8:
             return True
-        elif tokens > 10:
+        elif tokens > 8:
             return True
-
-        elif card > 5:
+        elif card > 8:
             for cards in my_cards:
-                if cards +- 2 == card:
+                if cards +- 2 == card or cards +- 1 == card:
                     for other_card in other_cards:
                         if other_card +- 1 == card:
                             return False
