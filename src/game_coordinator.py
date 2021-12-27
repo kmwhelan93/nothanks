@@ -13,7 +13,6 @@ def simulate_games(players, num_games):
 
     print("------------------")
     print("------------------")
-    print("------------------")
     print("AGGREGATE RESULTS:")
     for name, w in wins.items():
         print(f'{name} won {w}')

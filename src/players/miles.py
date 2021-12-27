@@ -8,6 +8,8 @@ class Miles:
         my_tokens = game_state.player_tokens[game_state.current_turn]
         if card < 10:
             return True
+        if card - tokens < 11:
+            return True
         if self.one_off(card, my_cards):
             return True
         return False
@@ -20,3 +22,4 @@ class Miles:
             if x - card == 1:
                 return True
         return False
+
