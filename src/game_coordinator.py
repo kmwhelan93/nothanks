@@ -3,9 +3,6 @@ from src.players.no_thanks import NoThanksPlayer
 from src.players.random import RandomPlayer
 import random
 
-from src.players.take import TakePlayer
-
-
 def simulate_games(players, num_games):
     wins = {players[key].name: 0 for key in range(len(players))}
     for i in range(num_games):
