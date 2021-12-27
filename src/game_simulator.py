@@ -6,7 +6,7 @@ import time
 
 SLEEP_TIME = 1
 
-def simulate(players, observe=False):
+def simulate(players, observe=False, silent=False):
     num_players = len(players)
     deck = list(range(3, 36))
     random.shuffle(deck)
@@ -40,20 +40,22 @@ def simulate(players, observe=False):
                     print(f'{p.name} puts a token on the card {card}')
                     time.sleep(SLEEP_TIME)
 
-
-    print("GAME CONCLUDED. FINAL SCORE")
+    if not silent:
+        print("GAME CONCLUDED. FINAL SCORE")
     winner_score = sys.maxsize
     winner_name = "No Winner"
     for p in players:
         score = gs.score(p.name)
-        print(f'{p.name}: {score}')
+        if not silent:
+            print(f'{p.name}: {score}')
         if (score < winner_score):
             winner_name = p.name
             winner_score = score
 
-    print('')
-    print('')
-    print(f'Winner is: {winner_name}')
+    if not silent:
+        print('')
+        print('')
+        print(f'Winner is: {winner_name}')
     return winner_name
 
 

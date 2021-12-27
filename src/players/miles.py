@@ -11,9 +11,9 @@ class Miles:
         opponent_low_on_tokens = self.opponent_low_on_tokens(game_state)
         if card < 10:
             return True
-        if card - tokens < 11:
+        if card - tokens < 10:
             return True
-        if card - 2 * tokens < 11:
+        if card - 2 * tokens < 10:
             return True
         if tokens > 10:
             return True

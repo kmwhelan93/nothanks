@@ -9,7 +9,7 @@ def simulate_games(players, num_games):
     wins = {players[key].name: 0 for key in range(len(players))}
     for i in range(num_games):
         random.shuffle(players)
-        winner = game_simulator.simulate(players)
+        winner = game_simulator.simulate(players, silent=True)
         wins[winner] += 1
 
     print("------------------")
@@ -28,6 +28,6 @@ def observe_game(players):
 
 if __name__ == "__main__":
     num_games = 1000
-    players = [NoThanksPlayer("NoThanks Ninny"), Miles(), LiamBot()]
+    players = [NoThanksPlayer("NoThanks Ninny"), Miles(), LiamBot(), NoThanksPlayer("Nothanks Nancy")]
     simulate_games(players, num_games)
     observe_game(players)
