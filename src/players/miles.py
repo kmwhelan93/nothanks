@@ -21,7 +21,7 @@ class Miles:
 
     def one_off(self, card, my_cards):
         for x in my_cards:
-            if x - card == 1:
+            if x - card == 1 or card - x == 1:
                 return True
         return False
 
