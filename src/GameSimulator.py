@@ -1,17 +1,14 @@
 from src.GameState import GameState
-from src.players.random import RandomPlayer
 import random
 import sys
 import copy
 
-NUM_PLAYERS = 3
-
-if __name__ == "__main__":
-    players = [RandomPlayer() for element in range(NUM_PLAYERS)]
+def simulate(players):
+    num_players = len(players)
     deck = list(range(3, 36))
     random.shuffle(deck)
 
-    gs = GameState(NUM_PLAYERS)
+    gs = GameState(num_players)
 
     while deck:
         card = deck.pop()
@@ -25,22 +22,23 @@ if __name__ == "__main__":
             else:
                 tokens += 1
                 gs.player_tokens[gs.current_turn] -= 1
-                gs.current_turn = (gs.current_turn + 1) % NUM_PLAYERS
+                gs.current_turn = (gs.current_turn + 1) % num_players
 
 
     print("GAME CONCLUDED. FINAL SCORE")
     winner_score = sys.maxsize
     winner_index = -1
-    for i in range(NUM_PLAYERS):
+    for i in range(num_players):
         score = gs.score(i)
-        print(f'Player {i}: {score}')
+        print(f'{players[i].name}: {score}')
         if (score < winner_score):
             winner_index = i
             winner_score = score
 
     print('')
     print('')
-    print(f'Winner is: {winner_index}')
+    print(f'Winner is: {players[winner_index].name}')
+    return winner_index
 
 
 

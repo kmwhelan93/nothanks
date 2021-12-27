@@ -2,3 +2,4 @@ lib
 bin
 .idea/
 pyvenv.cfg
+__pycache__/
