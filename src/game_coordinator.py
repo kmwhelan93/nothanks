@@ -1,4 +1,4 @@
-from src import GameSimulator
+from src import game_simulator
 from src.players.random import RandomPlayer
 import random
 
@@ -7,7 +7,7 @@ def simulate_games(players, num_games):
     wins = {players[key].name: 0 for key in range(len(players))}
     for i in range(num_games):
         random.shuffle(players)
-        winner = GameSimulator.simulate(players)
+        winner = game_simulator.simulate(players)
         wins[players[winner].name] += 1
 
     print("------------------")

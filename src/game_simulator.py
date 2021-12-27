@@ -1,4 +1,4 @@
-from src.GameState import GameState
+from src.game_state import GameState
 import random
 import sys
 import copy
