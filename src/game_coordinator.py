@@ -28,6 +28,6 @@ def observe_game(players):
 
 if __name__ == "__main__":
     num_games = 1000
-    players = [NoThanksPlayer("NoThanks Ninny"), Miles(), RandomPlayer("Random Ronald"), LiamBot()]
+    players = [NoThanksPlayer("NoThanks Ninny"), Miles(), LiamBot()]
     simulate_games(players, num_games)
     observe_game(players)

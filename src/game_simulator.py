@@ -4,7 +4,7 @@ import sys
 import copy
 import time
 
-SLEEP_TIME = 2
+SLEEP_TIME = 1
 
 def simulate(players, observe=False):
     num_players = len(players)
@@ -26,7 +26,7 @@ def simulate(players, observe=False):
             p = players[gs.current_turn]
             if gs.player_tokens[p.name] == 0 or p.decideOnCard(card, tokens, copy.deepcopy(gs)):
                 if observe:
-                    print(f'{p.name} takes the card {card}')
+                    print(f'{p.name} takes the card {card} with {tokens} tokens')
                     print('')
                     time.sleep(SLEEP_TIME)
                 gs.player_tokens[p.name] += tokens
