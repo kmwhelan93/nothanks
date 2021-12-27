@@ -2,8 +2,11 @@ from src.game_state import GameState
 import random
 import sys
 import copy
+import time
 
-def simulate(players, silent=False):
+SLEEP_TIME = 2
+
+def simulate(players, observe=False):
     num_players = len(players)
     deck = list(range(3, 36))
     random.shuffle(deck)
@@ -12,10 +15,18 @@ def simulate(players, silent=False):
 
     while deck:
         card = deck.pop()
+        if observe:
+            print(f'{card} is drawn')
+            time.sleep(SLEEP_TIME)
+
         tokens = 0
         while True:
             p = players[gs.current_turn]
             if gs.player_tokens[gs.current_turn] == 0 or p.decideOnCard(card, tokens, copy.deepcopy(gs)):
+                if observe:
+                    print(f'{p.name} takes the card {card}')
+                    print('')
+                    time.sleep(SLEEP_TIME)
                 gs.player_tokens[gs.current_turn] += tokens
                 gs.player_cards[gs.current_turn].append(card)
                 break
@@ -23,6 +34,9 @@ def simulate(players, silent=False):
                 tokens += 1
                 gs.player_tokens[gs.current_turn] -= 1
                 gs.current_turn = (gs.current_turn + 1) % num_players
+                if observe:
+                    print(f'{p.name} puts a token on the card {card}')
+                    time.sleep(SLEEP_TIME)
 
 
     print("GAME CONCLUDED. FINAL SCORE")
