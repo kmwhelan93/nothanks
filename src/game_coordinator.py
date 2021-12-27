@@ -19,7 +19,9 @@ def simulate_games(players, num_games):
         print(f'{name} won {w}')
     winner = max(wins, key=wins.get)
     print('')
+    print('=====================')
     print(f'Overall winner is: {winner}, winning {round(wins[winner] / num_games * 100)}% of games')
+    print('=====================')
 
 def observe_game(players):
     game_simulator.simulate(players, observe=True)

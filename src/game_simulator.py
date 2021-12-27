@@ -17,6 +17,10 @@ def simulate(players, observe=False):
         card = deck.pop()
         if observe:
             print(f'{card} is drawn')
+            formatted_tokens = {players[key].name: gs.player_tokens[key] for key in range(num_players)}
+            formatted_cards = {players[key].name: gs.player_cards[key] for key in range(num_players)}
+            print(f'player tokens: {formatted_tokens}')
+            print(f'player cards: {formatted_cards}')
             time.sleep(SLEEP_TIME)
 
         tokens = 0
