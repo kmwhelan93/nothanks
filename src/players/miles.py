@@ -4,8 +4,8 @@ class Miles:
         self.name = "Miles bot"
 
     def decideOnCard(self, card, tokens, game_state):
-        my_cards = game_state.player_cards[game_state.current_turn]
-        my_tokens = game_state.player_tokens[game_state.current_turn]
+        my_cards = game_state.player_cards[self.name]
+        my_tokens = game_state.player_tokens[self.name]
         if card < 10:
             return True
         if card - tokens < 11:

@@ -11,32 +11,30 @@ def simulate(players, observe=False):
     deck = list(range(3, 36))
     random.shuffle(deck)
 
-    gs = GameState(num_players)
+    gs = GameState(players)
 
     while deck:
         card = deck.pop()
         if observe:
             print(f'{card} is drawn')
-            formatted_tokens = {players[key].name: gs.player_tokens[key] for key in range(num_players)}
-            formatted_cards = {players[key].name: gs.player_cards[key] for key in range(num_players)}
-            print(f'player tokens: {formatted_tokens}')
-            print(f'player cards: {formatted_cards}')
+            print(f'player tokens: {gs.player_tokens}')
+            print(f'player cards: {gs.player_cards}')
             time.sleep(SLEEP_TIME)
 
         tokens = 0
         while True:
             p = players[gs.current_turn]
-            if gs.player_tokens[gs.current_turn] == 0 or p.decideOnCard(card, tokens, copy.deepcopy(gs)):
+            if gs.player_tokens[p.name] == 0 or p.decideOnCard(card, tokens, copy.deepcopy(gs)):
                 if observe:
                     print(f'{p.name} takes the card {card}')
                     print('')
                     time.sleep(SLEEP_TIME)
-                gs.player_tokens[gs.current_turn] += tokens
-                gs.player_cards[gs.current_turn].append(card)
+                gs.player_tokens[p.name] += tokens
+                gs.player_cards[p.name].append(card)
                 break
             else:
                 tokens += 1
-                gs.player_tokens[gs.current_turn] -= 1
+                gs.player_tokens[p.name] -= 1
                 gs.current_turn = (gs.current_turn + 1) % num_players
                 if observe:
                     print(f'{p.name} puts a token on the card {card}')
@@ -45,18 +43,18 @@ def simulate(players, observe=False):
 
     print("GAME CONCLUDED. FINAL SCORE")
     winner_score = sys.maxsize
-    winner_index = -1
-    for i in range(num_players):
-        score = gs.score(i)
-        print(f'{players[i].name}: {score}')
+    winner_name = "No Winner"
+    for p in players:
+        score = gs.score(p.name)
+        print(f'{p.name}: {score}')
         if (score < winner_score):
-            winner_index = i
+            winner_name = p.name
             winner_score = score
 
     print('')
     print('')
-    print(f'Winner is: {players[winner_index].name}')
-    return winner_index
+    print(f'Winner is: {winner_name}')
+    return winner_name
 
 
 

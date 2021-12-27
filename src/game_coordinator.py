@@ -10,7 +10,7 @@ def simulate_games(players, num_games):
     for i in range(num_games):
         random.shuffle(players)
         winner = game_simulator.simulate(players)
-        wins[players[winner].name] += 1
+        wins[winner] += 1
 
     print("------------------")
     print("------------------")
