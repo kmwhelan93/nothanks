@@ -8,6 +8,7 @@ class Miles:
         my_tokens = game_state.player_tokens[self.name]
         opp_cards = self.opponent_cards(card, game_state)
         opp_distance = self.opponent_distance(card, opp_cards)
+        opponent_low_on_tokens = self.opponent_low_on_tokens(game_state)
         if card < 10:
             return True
         if card - tokens < 11:
@@ -17,7 +18,7 @@ class Miles:
         if tokens > 10:
             return True
         if self.one_off(card, my_cards):
-            if opp_distance < 2 or 5 < tokens:
+            if opp_distance < 2 or 5 < tokens or opponent_low_on_tokens:
                 return True
             else:
                 return False
@@ -27,6 +28,12 @@ class Miles:
     def one_off(self, card, my_cards):
         for x in my_cards:
             if abs(x - card) == 1:
+                return True
+        return False
+
+    def opponent_low_on_tokens(self, game_state):
+        for player, tokens in game_state.player_tokens.items():
+            if player != self.name and tokens < 2:
                 return True
         return False
 
