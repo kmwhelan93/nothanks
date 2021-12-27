@@ -15,7 +15,7 @@ def simulate(players):
         tokens = 0
         while True:
             p = players[gs.current_turn]
-            if gs.player_tokens[gs.current_turn] == 0 or p.decideOnCard(card, copy.deepcopy(gs)):
+            if gs.player_tokens[gs.current_turn] == 0 or p.decideOnCard(card, tokens, copy.deepcopy(gs)):
                 gs.player_tokens[gs.current_turn] += tokens
                 gs.player_cards[gs.current_turn].append(card)
                 break
