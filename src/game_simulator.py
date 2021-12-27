@@ -3,7 +3,7 @@ import random
 import sys
 import copy
 
-def simulate(players):
+def simulate(players, silent=False):
     num_players = len(players)
     deck = list(range(3, 36))
     random.shuffle(deck)

@@ -1,13 +1,16 @@
 from src import game_simulator
+from src.players.no_thanks import NoThanksPlayer
 from src.players.random import RandomPlayer
 import random
+
+from src.players.take import TakePlayer
 
 
 def simulate_games(players, num_games):
     wins = {players[key].name: 0 for key in range(len(players))}
     for i in range(num_games):
         random.shuffle(players)
-        winner = game_simulator.simulate(players)
+        winner = game_simulator.simulate(players, silent=True)
         wins[players[winner].name] += 1
 
     print("------------------")
@@ -22,6 +25,6 @@ def simulate_games(players, num_games):
 
 
 if __name__ == "__main__":
-    num_games = 100
-    players = [RandomPlayer("Random Joe"), RandomPlayer("Random Paul"), RandomPlayer("Random Sam")]
+    num_games = 1000
+    players = [NoThanksPlayer("NoThanks Ninny"), NoThanksPlayer("NoThanks Nancy"), RandomPlayer("Random Ronald")]
     simulate_games(players, num_games)
