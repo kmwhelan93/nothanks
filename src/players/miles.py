@@ -10,6 +10,8 @@ class Miles:
             return True
         if card - tokens < 11:
             return True
+        if tokens > 9:
+            return True
         if self.one_off(card, my_cards):
             return True
         return False
