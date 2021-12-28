@@ -3,6 +3,7 @@ from collections import defaultdict
 class GameState:
     def __init__(self, players):
         num_players = len(players)
+        self.player_order = [p.name for p in players]
         self.current_turn = 0
         self.player_cards = {players[key].name: [] for key in range(num_players)}
         initial_token_count = 11 if num_players < 6 else 9

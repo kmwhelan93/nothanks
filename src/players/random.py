@@ -9,3 +9,6 @@ class RandomPlayer:
             return True
         else:
             return False
+
+    def notify_game_end(self, winner_name, winner_score, game_state):
+        pass

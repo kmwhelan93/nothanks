@@ -30,3 +30,5 @@ class LiamBot:
                 other_cards = other_cards + cards
         return other_cards
 
+    def notify_game_end(self, winner_name, winner_score, game_state):
+        pass

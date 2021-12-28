@@ -1,4 +1,6 @@
 from src import game_simulator
+from src.players.human import HumanPlayer
+from src.players.kevin import KevinBot
 from src.players.liam import LiamBot
 from src.players.miles import Miles
 from src.players.no_thanks import NoThanksPlayer
@@ -28,6 +30,7 @@ def observe_game(players):
 
 if __name__ == "__main__":
     num_games = 1000
-    players = [NoThanksPlayer("NoThanks Ninny"), Miles(), LiamBot(), NoThanksPlayer("Nothanks Nancy")]
-    simulate_games(players, num_games)
+    # players = [HumanPlayer("Liam Human"), Miles(), LiamBot(), KevinBot()]
+    players = [KevinBot(), Miles(), LiamBot(), NoThanksPlayer("NoThanks Ninny")]
+    # simulate_games(players, num_games)
     observe_game(players)

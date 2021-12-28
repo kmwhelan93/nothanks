@@ -31,6 +31,7 @@ def simulate(players, observe=False, silent=False):
                     time.sleep(SLEEP_TIME)
                 gs.player_tokens[p.name] += tokens
                 gs.player_cards[p.name].append(card)
+                gs.player_cards[p.name].sort()
                 break
             else:
                 tokens += 1
@@ -56,6 +57,9 @@ def simulate(players, observe=False, silent=False):
         print('')
         print('')
         print(f'Winner is: {winner_name}')
+
+    for p in players:
+        p.notify_game_end(winner_name, winner_score, gs)
     return winner_name
 
 
